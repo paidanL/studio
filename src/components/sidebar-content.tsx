@@ -1,6 +1,7 @@
 'use client';
 
 import {useState} from 'react';
+import Link from 'next/link';
 import {Icons} from '@/components/icons';
 import {
   SidebarGroup,
@@ -43,14 +44,21 @@ export default function SidebarContentComponent() {
     <>
       <SidebarGroup>
         <SidebarMenu>
-          {Navigation.map((item) => (
-            <SidebarMenuItem key={item.href}>
-              <SidebarMenuButton href={item.href}>
-                {/* {Icons[item.icon]} */}
-                <span>{item.title}</span>
-              </SidebarMenuButton>
+          {Navigation.map((item) => {
+            const IconComponent = Icons[item.icon];
+
+            return (
+            <SidebarMenuItem key={item.href} asChild>
+              <Link href={item.href} legacyBehavior passHref>
+                <SidebarMenuButton>
+                  {/* Render the icon if it exists */}
+                  {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+              </Link>
             </SidebarMenuItem>
-          ))}
+            );
+          })}
         </SidebarMenu>
       </SidebarGroup>
       <SidebarGroup title="Preferences">
