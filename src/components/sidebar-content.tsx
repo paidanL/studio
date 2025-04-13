@@ -3,12 +3,12 @@
 import {useState} from 'react';
 import {Icons} from '@/components/icons';
 import {
-  SidebarContent,
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
+  SidebarContent as SidebarContentComponent, // Renamed to avoid conflict
 } from '@/components/ui/sidebar';
 import {useTheme} from 'next-themes';
 import {Button} from '@/components/ui/button';
@@ -36,12 +36,12 @@ const Navigation = [
   },
 ];
 
-export default function SideBar() {
+export default function SideBarContent() {
   const [isExpanded, setIsExpanded] = useState(false);
   const {theme, setTheme} = useTheme();
 
   return (
-    <SidebarContent>
+    <SidebarContentComponent>
       <SidebarGroup>
         <SidebarMenu>
           {Navigation.map((item) => (
@@ -78,7 +78,6 @@ export default function SideBar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroup>
-    </SidebarContent>
+    </SidebarContentComponent>
   );
 }
-
