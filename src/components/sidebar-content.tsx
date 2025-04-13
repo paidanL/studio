@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import {Icons} from '@/components/icons';
 import {
@@ -9,9 +9,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarContent,
-} from '@/components/ui/sidebar';
-import {useTheme} from 'next-themes';
-import {Button} from '@/components/ui/button';
+} from '@/components/ui/sidebar'
+import { useTheme } from 'next-themes';
+import { Button } from '@/components/ui/button';
 
 const Navigation = [
   {
@@ -40,6 +40,11 @@ export default function SidebarContentComponent() {
   const [isExpanded, setIsExpanded] = useState(false);
   const {theme, setTheme} = useTheme();
 
+  const toggleTheme = () => {
+    console.log(theme);
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   return (
     <>
       <SidebarGroup>
@@ -48,42 +53,32 @@ export default function SidebarContentComponent() {
             const IconComponent = Icons[item.icon];
 
             return (
-            <SidebarMenuItem key={item.href} asChild>
-              <Link href={item.href} legacyBehavior passHref>
-                <SidebarMenuButton>
-                  {/* Render the icon if it exists */}
-                  {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
-                  <span>{item.title}</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
+              <SidebarMenuItem key={item.href}>
+                <Link href={item.href} legacyBehavior passHref>
+                  <SidebarMenuButton>
+                    {/* Render the icon if it exists */}
+                    {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
+                    <span>{item.title}</span>
+                  </SidebarMenuButton>
+                </Link>
+              </SidebarMenuItem>
             );
           })}
         </SidebarMenu>
       </SidebarGroup>
-      <SidebarGroup title="Preferences">
+      <div className="mt-auto">
         <SidebarMenu>
           <SidebarMenuItem>
             <Button
               variant="ghost"
               className="w-full justify-start"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              onClick={toggleTheme}
             >
-              {theme === 'dark' ? (
-                <>
-                  <Icons.light className="mr-2 h-4 w-4" />
-                  <span>Light Mode</span>
-                </>
-              ) : (
-                <>
-                  <Icons.dark className="mr-2 h-4 w-4" />
-                  <span>Dark Mode</span>
-                </>
-              )}
+              {theme === 'dark' ? <><Icons.light className="mr-2 h-4 w-4" /><span>Light Mode</span></> : <><Icons.dark className="mr-2 h-4 w-4" /><span>Dark Mode</span></>}
             </Button>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarGroup>
+      </div>
     </>
   );
 }

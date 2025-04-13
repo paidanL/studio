@@ -3,6 +3,7 @@ import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import {Toaster} from '@/components/ui/toaster';
 import {Sidebar, SidebarProvider} from '@/components/ui/sidebar';
+import {ThemeProvider} from 'next-themes';
 import SidebarContentComponent from '@/components/sidebar-content';
 
 const geistSans = Geist({
@@ -26,15 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SidebarProvider>
-          <Sidebar collapsible="icon">
-            <SidebarContentComponent />
-          </Sidebar>
-          {children}
-        </SidebarProvider>
-        <Toaster />
+        <ThemeProvider attribute="class">\
+          <SidebarProvider>
+            <Sidebar collapsible="icon">
+              <SidebarContentComponent />
+            </Sidebar>
+              {children}
+            </SidebarProvider>\
+          <Toaster />
+        </ThemeProvider>\
       </body>
     </html>
   );
