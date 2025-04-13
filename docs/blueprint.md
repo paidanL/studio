@@ -6,7 +6,8 @@
 - Command Prompt: A command prompt feature for keyboard users to quickly input data and navigate the app.
 - Data Input/Validation: Data entry and validation for income, expenses, assets, liabilities, and individual transactions.
 - Persistent Storage: SQL-like data persistance.
-- Dark Theme: Dark theme toggle for user preference.
+- Dark Theme: Dark theme toggle for user preference
+- SQLite Database: Utilizes SQLite for storing transaction data. The database is managed through Python's `sqlite3` library. A table named `transactions` stores data with fields: amount, date, type, and description. Interactions with the database (create, read, update, delete) are handled by functions defined in `src/lib/database.py`.
 
 ## Style Guidelines:
 

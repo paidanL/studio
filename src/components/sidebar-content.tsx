@@ -77,6 +77,15 @@ export default function SidebarContentComponent() {
               {theme === 'dark' ? <><Icons.light className="mr-2 h-4 w-4" /><span>Light Mode</span></> : <><Icons.dark className="mr-2 h-4 w-4" /><span>Dark Mode</span></>}
             </Button>
           </SidebarMenuItem>
+          <SidebarMenuItem>
+            <Link href="/transactions" legacyBehavior passHref>
+              <SidebarMenuButton>
+                <Icons.plus className="mr-2 h-4 w-4" />
+                <span>Add Transaction</span>
+              </SidebarMenuButton>
+            </Link>
+          </SidebarMenuItem>
+
         </SidebarMenu>
       </div>
     </>
