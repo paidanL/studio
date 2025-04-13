@@ -39,3 +39,41 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: `Error processing request: ${error.message}` }, { status: 500 });
   }
 }
+
+export async function GET(req: NextRequest) {
+    try {
+        console.log('GET request received at /api/transactions');
+  
+      const { spawn } = require('child_process');
+      const pythonProcess = spawn('python3', ['src/lib/database.py', 'list']);
+  
+      let result = "";
+      let error = "";
+  
+      for await (const chunk of pythonProcess.stdout) {
+          result += chunk;
+      }
+  
+      for await (const chunk of pythonProcess.stderr) {
+          error += chunk;
+      }
+  
+      console.log('Python script output:', result);
+      console.error('Python script errors:', error);
+  
+      if (error) {
+          return NextResponse.json({ error: `Python script error: ${error}` }, { status: 500 });
+      }
+  
+      try {
+          const transactions = JSON.parse(result);
+          return NextResponse.json(transactions);
+      } catch (parseError) {
+          console.error('Failed to parse JSON response:', parseError);
+          return NextResponse.json({ error: `Failed to parse JSON response from Python script: ${parseError}` }, { status: 500 });
+      }
+    } catch (error) {
+      console.error('Error in GET /api/transactions:', error);
+      return NextResponse.json({ error: `Error processing request: ${error.message}` }, { status: 500 });
+    }
+  }
