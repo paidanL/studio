@@ -46,7 +46,7 @@ export default function SidebarContentComponent() {
           {Navigation.map((item) => (
             <SidebarMenuItem key={item.href}>
               <SidebarMenuButton href={item.href}>
-                <Icons[item.icon] className="mr-2 h-4 w-4" />
+                {/* {Icons[item.icon]} */}
                 <span>{item.title}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>

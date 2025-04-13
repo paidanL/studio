@@ -28,15 +28,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        
+        <SidebarProvider>
           <Sidebar collapsible="icon">
             <SidebarContentComponent />
           </Sidebar>
           {children}
-        
+        </SidebarProvider>
         <Toaster />
       </body>
     </html>
   );
 }
+
 

@@ -28,6 +28,7 @@ import {
   ListChecks,
   CreditCard,
   Building2,
+  X,
 } from 'lucide-react';
 
 const Icons = {
