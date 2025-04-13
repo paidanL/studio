@@ -2,8 +2,8 @@ import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import {Toaster} from '@/components/ui/toaster';
-import {Sidebar, SidebarInset, SidebarProvider} from '@/components/ui/sidebar';
-import SidebarContent from '@/components/sidebar-content';
+import {Sidebar, SidebarProvider} from '@/components/ui/sidebar';
+import SidebarContentComponent from '@/components/sidebar-content';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,12 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SidebarProvider>
+        
           <Sidebar collapsible="icon">
-            <SidebarContent />
+            <SidebarContentComponent />
           </Sidebar>
-          <SidebarInset>{children}</SidebarInset>
-        </SidebarProvider>
+          {children}
+        
         <Toaster />
       </body>
     </html>

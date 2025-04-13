@@ -7,8 +7,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarSeparator,
-  SidebarContent as SidebarContentComponent, // Renamed to avoid conflict
+  SidebarContent,
 } from '@/components/ui/sidebar';
 import {useTheme} from 'next-themes';
 import {Button} from '@/components/ui/button';
@@ -36,12 +35,12 @@ const Navigation = [
   },
 ];
 
-export default function SideBarContent() {
+export default function SidebarContentComponent() {
   const [isExpanded, setIsExpanded] = useState(false);
   const {theme, setTheme} = useTheme();
 
   return (
-    <SidebarContentComponent>
+    <>
       <SidebarGroup>
         <SidebarMenu>
           {Navigation.map((item) => (
@@ -54,7 +53,6 @@ export default function SideBarContent() {
           ))}
         </SidebarMenu>
       </SidebarGroup>
-      <SidebarSeparator />
       <SidebarGroup title="Preferences">
         <SidebarMenu>
           <SidebarMenuItem>
@@ -78,6 +76,7 @@ export default function SideBarContent() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroup>
-    </SidebarContentComponent>
+    </>
   );
 }
+
