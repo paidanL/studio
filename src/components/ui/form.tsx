@@ -166,6 +166,28 @@ const FormMessage = React.forwardRef<
 })
 FormMessage.displayName = "FormMessage"
 
+const FormHelper = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>(props: ControllerProps<TFieldValues, TName> & {
+  label: string
+  children: React.ReactNode
+  description?: string
+}) => {
+  return (
+    <FormField {...props}>
+      <FormItem>
+        <FormLabel>{props.label}</FormLabel>
+        <FormControl>{props.children}</FormControl>
+        {props.description && (
+          <FormDescription>{props.description}</FormDescription>
+        )}
+        <FormMessage />
+      </FormItem>
+    </FormField>
+  )
+}
+
 export {
   useFormField,
   Form,
@@ -175,4 +197,5 @@ export {
   FormDescription,
   FormMessage,
   FormField,
+  FormHelper,
 }
