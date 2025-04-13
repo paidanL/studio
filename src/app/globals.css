@@ -34,7 +34,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --sidebar-background: 0 0% 98%; /* Very Light Gray */
-    --sidebar-foreground: 240 5.3% 26.1%; /* Dark Gray */
+    --sidebar-foreground: 240 10% 3.9%; /* Near Black */
     --sidebar-primary: 258 55.4% 56.5%; /* Soft Purple */
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%; /* Lighter Gray */
@@ -42,6 +42,17 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+  .dark body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+
+
   .dark {
     --background: 240 10% 3.9%; /* Near Black */
     --foreground: 0 0% 98%; /* White */
